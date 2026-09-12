@@ -1,3 +1,47 @@
 [gd_scene format=3 uid="uid://ckp3x4r815ug8"]
 
+[ext_resource type="Script" uid="uid://bapt2txnck41b" path="res://scenes/boxing.gd" id="1_xgbl3"]
+
 [node name="boxing" type="Node2D" unique_id=1569111883]
+script = ExtResource("1_xgbl3")
+
+[node name="InitTimer" type="Timer" parent="." unique_id=1953501684]
+wait_time = 3.0
+one_shot = true
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=2122504622]
+wait_time = 3.0
+one_shot = true
+
+[node name="Label" type="Label" parent="." unique_id=1937896391]
+offset_left = 60.0
+offset_top = 43.0
+offset_right = 100.0
+offset_bottom = 66.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthLabel" type="Label" parent="." unique_id=1921626135]
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OppHealthLabel" type="Label" parent="." unique_id=1061024437]
+offset_left = 120.0
+offset_right = 160.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Win" type="Label" parent="." unique_id=1247515518]
+offset_left = 45.0
+offset_top = 61.0
+offset_right = 119.0
+offset_bottom = 84.0
+text = "WINNER!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="InitTimer" to="." method="_on_init_timer_timeout"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
