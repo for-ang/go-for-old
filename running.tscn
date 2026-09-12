@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cpkqn6sb60txa"]
+
+[ext_resource type="Script" uid="uid://6w1y07v2w2ax" path="res://running.gd" id="1_hus8h"]
+[ext_resource type="Texture2D" uid="uid://tprjyps2lpa7" path="res://icon.svg" id="2_xkkc6"]
+
+[node name="Running" type="Node2D" unique_id=523653077]
+script = ExtResource("1_hus8h")
+
+[node name="Player" type="Sprite2D" parent="." unique_id=1710781293]
+position = Vector2(80.00001, 93.00001)
+scale = Vector2(0.465, 0.465)
+texture = ExtResource("2_xkkc6")
+
+[node name="Finish" type="Label" parent="." unique_id=517025013]
+offset_left = 39.0
+offset_top = 66.0
+offset_right = 120.0
+offset_bottom = 89.0
+text = "FINISH!! :D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Over" type="Label" parent="." unique_id=1204859909]
+offset_left = 24.0
+offset_top = 66.0
+offset_right = 143.0
+offset_bottom = 89.0
+text = "FELLED OFF!! D:"
+
+[node name="TiltTimer" type="Timer" parent="." unique_id=1964173117]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="TiltTimer" to="." method="_on_tilt_timer_timeout"]
