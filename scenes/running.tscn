@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://cpkqn6sb60txa"]
 
-[ext_resource type="Script" uid="uid://6w1y07v2w2ax" path="res://running.gd" id="1_hus8h"]
-[ext_resource type="Texture2D" uid="uid://tprjyps2lpa7" path="res://icon.svg" id="2_xkkc6"]
+[ext_resource type="Script" uid="uid://6w1y07v2w2ax" path="res://scripts/running.gd" id="1_4bh01"]
+[ext_resource type="Texture2D" uid="uid://tprjyps2lpa7" path="res://icon.svg" id="2_e6dgo"]
 
 [node name="Running" type="Node2D" unique_id=523653077]
-script = ExtResource("1_hus8h")
+script = ExtResource("1_4bh01")
 
 [node name="Player" type="Sprite2D" parent="." unique_id=1710781293]
 position = Vector2(80.00001, 93.00001)
 scale = Vector2(0.465, 0.465)
-texture = ExtResource("2_xkkc6")
+texture = ExtResource("2_e6dgo")
 
 [node name="Finish" type="Label" parent="." unique_id=517025013]
 offset_left = 39.0

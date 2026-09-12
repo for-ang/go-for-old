@@ -13,7 +13,7 @@ func _ready():
 	over.hide()
 
 func _physics_process(_delta: float):
-	#run (w/ sprite movement
+	#run (w/ sprite movement)
 	if Input.is_action_just_pressed("A"):
 		prog += 1 
 		player.position.y -= 4
@@ -23,15 +23,18 @@ func _physics_process(_delta: float):
 	if Input.is_action_just_released("A"):
 		player.position.y += 4
 	
+	#manual tilt
 	if Input.is_action_just_pressed("LEFT"):
 		tilt_left()
 	if Input.is_action_just_pressed("RIGHT"):
 		tilt_right() 
-		
+	
+	#game over conditions
 	if tilt <= -4 or tilt >= 4:
 		player.hide()
 		over.show()
 
+#tilt direction functions
 func tilt_left():
 	player.position.x -= 10
 	player.rotation_degrees -= 10
@@ -41,6 +44,7 @@ func tilt_right():
 	player.rotation_degrees += 10
 	tilt += 1 
 
+#automatic tilt
 func _on_tilt_timer_timeout():
 	var rand = randi_range(0,1)
 	if tilt == 0 and rand == 0 or tilt <= -1:
