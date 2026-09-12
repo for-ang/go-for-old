@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dkyn2mpgy6cnh"]
+
+[ext_resource type="Script" uid="uid://bem8icwajexj" path="res://scripts/shooting.gd" id="1_flpu0"]
+[ext_resource type="Texture2D" uid="uid://dmw2hnldxeiok" path="res://sprites/CROSSHAIR.png" id="2_flpu0"]
+[ext_resource type="Script" uid="uid://b2fc2k7t75dwh" path="res://scripts/crosshair.gd" id="3_flpu0"]
+[ext_resource type="Texture2D" uid="uid://xsijjchv7xrl" path="res://sprites/Target_logo.svg.webp" id="3_qu8ou"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1usye"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mjm1t"]
+radius = 19.0
+
+[node name="shooting" type="Node2D" unique_id=1324489357]
+script = ExtResource("1_flpu0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=913782104]
+position = Vector2(80, 80)
+scale = Vector2(0.135, 0.135)
+texture = ExtResource("3_qu8ou")
+
+[node name="crosshair" type="CharacterBody2D" parent="." unique_id=1979071095]
+script = ExtResource("3_flpu0")
+
+[node name="Sprite2D" type="Sprite2D" parent="crosshair" unique_id=2125839077]
+texture = ExtResource("2_flpu0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crosshair" unique_id=1625253465]
+shape = SubResource("CircleShape2D_1usye")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1802285419]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=605322335]
+position = Vector2(80, 63)
+shape = SubResource("CircleShape2D_mjm1t")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
