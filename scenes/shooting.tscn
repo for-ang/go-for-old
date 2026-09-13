@@ -11,6 +11,12 @@ radius = 9.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_mjm1t"]
 radius = 19.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gyhgo"]
+radius = 38.052597
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jcyov"]
+radius = 58.137768
+
 [node name="shooting" type="Node2D" unique_id=1324489357]
 script = ExtResource("1_flpu0")
 
@@ -29,14 +35,44 @@ texture = ExtResource("2_flpu0")
 shape = SubResource("CircleShape2D_1usye")
 
 [node name="ShakeTimer" type="Timer" parent="crosshair" unique_id=2036427867]
+wait_time = 0.2
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1802285419]
+[node name="CENTER" type="Area2D" parent="." unique_id=1802285419]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=605322335]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CENTER" unique_id=605322335]
 position = Vector2(80, 63)
 shape = SubResource("CircleShape2D_mjm1t")
 
+[node name="MID" type="Area2D" parent="." unique_id=1492899521]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MID" unique_id=25626049]
+position = Vector2(80, 63)
+shape = SubResource("CircleShape2D_gyhgo")
+
+[node name="OUTER" type="Area2D" parent="." unique_id=2038260910]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OUTER" unique_id=94653799]
+position = Vector2(80, 63)
+shape = SubResource("CircleShape2D_jcyov")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1941363111]
+offset_right = 40.0
+offset_bottom = 23.0
+vertical_alignment = 1
+
+[node name="BulletsLabel" type="Label" parent="." unique_id=1504931056]
+offset_left = 119.0
+offset_top = 1.0
+offset_right = 159.0
+offset_bottom = 24.0
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [connection signal="timeout" from="crosshair/ShakeTimer" to="crosshair" method="_on_shake_timer_timeout"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="CENTER" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="CENTER" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="MID" to="." method="_on_mid_body_entered"]
+[connection signal="body_exited" from="MID" to="." method="_on_mid_body_exited"]
+[connection signal="body_entered" from="OUTER" to="." method="_on_outer_body_entered"]
+[connection signal="body_exited" from="OUTER" to="." method="_on_outer_body_exited"]
