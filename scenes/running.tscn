@@ -27,8 +27,20 @@ offset_right = 143.0
 offset_bottom = 89.0
 text = "FELLED OFF!! D:"
 
+[node name="Count" type="Label" parent="." unique_id=1706882142]
+offset_left = 60.0
+offset_top = 36.0
+offset_right = 100.0
+offset_bottom = 59.0
+text = "3"
+horizontal_alignment = 1
+
 [node name="TiltTimer" type="Timer" parent="." unique_id=1964173117]
 wait_time = 2.0
 autostart = true
 
+[node name="StartTimer" type="Timer" parent="." unique_id=1317938090]
+autostart = true
+
 [connection signal="timeout" from="TiltTimer" to="." method="_on_tilt_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

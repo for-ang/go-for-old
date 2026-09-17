@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c7q4ccwq4g5t0"]
+
+[ext_resource type="Script" uid="uid://dwmn5hudbnn4p" path="res://scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://ofmbn8nqv8ud" path="res://sprites/TEMPSTART.png" id="2_lnu2h"]
+
+[node name="game" type="Node2D" unique_id=114375744]
+script = ExtResource("1_yqjtg")
+
+[node name="TEMPSTART" type="Sprite2D" parent="." unique_id=1737268734]
+position = Vector2(80, 72)
+texture = ExtResource("2_lnu2h")

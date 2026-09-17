@@ -5,9 +5,6 @@
 [ext_resource type="Script" uid="uid://b2fc2k7t75dwh" path="res://scripts/crosshair.gd" id="3_flpu0"]
 [ext_resource type="Texture2D" uid="uid://xsijjchv7xrl" path="res://sprites/Target_logo.svg.webp" id="3_qu8ou"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1usye"]
-radius = 9.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_mjm1t"]
 radius = 19.0
 
@@ -17,13 +14,40 @@ radius = 38.052597
 [sub_resource type="CircleShape2D" id="CircleShape2D_jcyov"]
 radius = 58.137768
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1usye"]
+radius = 9.0
+
 [node name="shooting" type="Node2D" unique_id=1324489357]
 script = ExtResource("1_flpu0")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=913782104]
+[node name="Target" type="Sprite2D" parent="." unique_id=913782104]
 position = Vector2(80, 80)
 scale = Vector2(0.135, 0.135)
 texture = ExtResource("3_qu8ou")
+
+[node name="CENTER" type="Area2D" parent="Target" unique_id=1802285419]
+position = Vector2(-592.5926, -592.5926)
+scale = Vector2(7.4074073, 7.4074073)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Target/CENTER" unique_id=605322335]
+position = Vector2(80, 63)
+shape = SubResource("CircleShape2D_mjm1t")
+
+[node name="MID" type="Area2D" parent="Target" unique_id=1492899521]
+position = Vector2(-592.5926, -592.5926)
+scale = Vector2(7.4074073, 7.4074073)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Target/MID" unique_id=25626049]
+position = Vector2(80, 63)
+shape = SubResource("CircleShape2D_gyhgo")
+
+[node name="OUTER" type="Area2D" parent="Target" unique_id=2038260910]
+position = Vector2(-592.5926, -592.5926)
+scale = Vector2(7.4074073, 7.4074073)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Target/OUTER" unique_id=94653799]
+position = Vector2(80, 63)
+shape = SubResource("CircleShape2D_jcyov")
 
 [node name="crosshair" type="CharacterBody2D" parent="." unique_id=1979071095]
 script = ExtResource("3_flpu0")
@@ -38,24 +62,6 @@ shape = SubResource("CircleShape2D_1usye")
 wait_time = 0.2
 autostart = true
 
-[node name="CENTER" type="Area2D" parent="." unique_id=1802285419]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CENTER" unique_id=605322335]
-position = Vector2(80, 63)
-shape = SubResource("CircleShape2D_mjm1t")
-
-[node name="MID" type="Area2D" parent="." unique_id=1492899521]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MID" unique_id=25626049]
-position = Vector2(80, 63)
-shape = SubResource("CircleShape2D_gyhgo")
-
-[node name="OUTER" type="Area2D" parent="." unique_id=2038260910]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OUTER" unique_id=94653799]
-position = Vector2(80, 63)
-shape = SubResource("CircleShape2D_jcyov")
-
 [node name="ScoreLabel" type="Label" parent="." unique_id=1941363111]
 offset_right = 40.0
 offset_bottom = 23.0
@@ -69,10 +75,10 @@ offset_bottom = 24.0
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[connection signal="body_entered" from="Target/CENTER" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Target/CENTER" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Target/MID" to="." method="_on_mid_body_entered"]
+[connection signal="body_exited" from="Target/MID" to="." method="_on_mid_body_exited"]
+[connection signal="body_entered" from="Target/OUTER" to="." method="_on_outer_body_entered"]
+[connection signal="body_exited" from="Target/OUTER" to="." method="_on_outer_body_exited"]
 [connection signal="timeout" from="crosshair/ShakeTimer" to="crosshair" method="_on_shake_timer_timeout"]
-[connection signal="body_entered" from="CENTER" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="CENTER" to="." method="_on_area_2d_body_exited"]
-[connection signal="body_entered" from="MID" to="." method="_on_mid_body_entered"]
-[connection signal="body_exited" from="MID" to="." method="_on_mid_body_exited"]
-[connection signal="body_entered" from="OUTER" to="." method="_on_outer_body_entered"]
-[connection signal="body_exited" from="OUTER" to="." method="_on_outer_body_exited"]
